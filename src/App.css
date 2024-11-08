@@ -1,0 +1,101 @@
+body {
+  background-color: gray;
+}
+
+/* IMPORTANT: Make sure the Canvas takes up the full screen */
+canvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* BOX COMPONENT SECTION START */
+.box-controls {
+  border: 1px solid black;
+  border-radius: 5px;
+  position: absolute;
+  top: 10px;
+  padding: 10px;
+
+  background-color: dimgray;
+}
+
+.box-controls p {
+  color: white;
+}
+/* BOX COMPONENT SECTION END */
+
+/* CAPSULE COMPONENT SECTION START */
+.capsule-controls {
+  border: 1px solid black;
+  border-radius: 5px;
+  position: absolute;
+  top: 10px;
+  padding: 10px;
+
+  background-color: dimgray;
+}
+.capsule-controls p {
+  color: white;
+}
+/* CAPSULE COMPONENT SECTION END */
+
+/* CIRCLE COMPONENT SECTION START */
+.circle-controls {
+  border: 1px solid black;
+  border-radius: 5px;
+  position: absolute;
+  top: 10px;
+  padding: 10px;
+
+  background-color: dimgray;
+}
+.circle-controls p {
+  color: white;
+}
+/* CIRCLE COMPONENT SECTION END */
+
+/* CYLINDER COMPONENT SECTION START */
+.cylinder-controls {
+  border: 1px solid black;
+  border-radius: 5px;
+  position: absolute;
+  top: 10px;
+  padding: 10px;
+
+  background-color: dimgray;
+}
+.cylinder-controls p {
+  color: white;
+}
+/* CYLINDER COMPONENT SECTION END */
+
+/* PLANE COMPONENT SECTION START */
+.plane-controls {
+  border: 1px solid black;
+  border-radius: 5px;
+  position: absolute;
+  top: 10px;
+  padding: 10px;
+
+  background-color: dimgray;
+}
+.plane-controls p {
+  color: white;
+}
+/* PLANE COMPONENT SECTION END */
+
+/* SPHERE COMPONENT SECTION START */
+.sphere-controls {
+  border: 1px solid black;
+  border-radius: 5px;
+  position: absolute;
+  top: 10px;
+  padding: 10px;
+
+  background-color: dimgray;
+}
+.sphere-controls p {
+  color: white;
+}
+/* SPHERE COMPONENT SECTION END */
