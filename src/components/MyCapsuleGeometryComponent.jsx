@@ -1,9 +1,13 @@
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Edges } from "@react-three/drei"; // helps when we want to draw the segment lines
 import { useRef, useState } from "react";
 import { OrbitControls } from "@react-three/drei";
 
-function CapsuleElement({ radius, length, capSegment }) {
+function CapsuleElement({
+  radiusProp,
+  lengthProp,
+  capSegmentsProp,
+  radialSegmentsProp,
+}) {
   const mesh = useRef(null);
 
   useFrame(() => {
@@ -12,26 +16,35 @@ function CapsuleElement({ radius, length, capSegment }) {
 
   return (
     <>
-      <mesh ref={mesh}>
-        <capsuleGeometry
-          attach="geometry"
-          args={[radius, length, capSegment]}
-        />
-        <meshStandardMaterial attach="material" color="pink" />
+      <group ref={mesh}>
+        {/* Solid capsule */}
+        <mesh>
+          <capsuleGeometry
+            attach="geometry"
+            args={[radiusProp, lengthProp, capSegmentsProp, radialSegmentsProp]}
+          />
+          <meshStandardMaterial attach="material" color="pink" />
+        </mesh>
 
-        {/* Edges to draw segment lines */}
-        <Edges scale={1} threshold={0.1}>
-          <lineBasicMaterial color="red" linewidth={2} />
-        </Edges>
-      </mesh>
+        {/* Wireframe over the capsule */}
+        <mesh>
+          <capsuleGeometry
+            attach="geometry"
+            args={[radiusProp, lengthProp, capSegmentsProp, radialSegmentsProp]}
+          />
+          <meshBasicMaterial attach="material" color="white" wireframe={true} />
+        </mesh>
+      </group>
     </>
   );
 }
 
 function MyCapsuleGeometryComponent() {
+  //body variables and wireframe variables
   const [inputRadius, setInputRadius] = useState(1);
   const [inputLength, setInputLength] = useState(1);
   const [inputCapSegments, setInputCapSegments] = useState(4);
+  const [inputRadialSegments, setInputRadialSegments] = useState(8);
 
   const handleRadiusChange = (e) => {
     setInputRadius(e.target.value);
@@ -43,14 +56,19 @@ function MyCapsuleGeometryComponent() {
     setInputCapSegments(e.target.value);
   };
 
+  const handleRadialSegmentChange = (e) => {
+    setInputRadialSegments(e.target.value);
+  };
+
   return (
     <>
       <Canvas camera={{ position: [-5, 2, 9], fov: 40 }}>
         <ambientLight intensity={0.3} />
         <CapsuleElement
-          radius={inputRadius}
-          length={inputLength}
-          capSegment={inputCapSegments}
+          radiusProp={inputRadius}
+          lengthProp={inputLength}
+          capSegmentsProp={inputCapSegments}
+          radialSegmentsProp={inputRadialSegments}
         />
         <OrbitControls />
       </Canvas>
@@ -74,6 +92,12 @@ function MyCapsuleGeometryComponent() {
           type="number"
           value={inputCapSegments}
           onChange={handleCapSegmentChange}
+        />
+        <p>radialSegments</p>
+        <input
+          type="number"
+          value={inputRadialSegments}
+          onChange={handleRadialSegmentChange}
         />
       </div>
       {/* controls capsule end */}
